@@ -57,6 +57,9 @@ labels:
     expose:
       - "80"
       - "443"
+    networks:
+      - default
+      - web  
 ```
 
 Por ejemplo en un docker compose completo.
@@ -82,6 +85,9 @@ services:
     volumes:
       - ./config:/notion-proxy/config
       - ./cache:/notion-proxy/cache
+    networks:
+      - default
+      - web  
    
 ```
 
