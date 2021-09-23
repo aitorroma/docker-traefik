@@ -49,6 +49,10 @@ Este comando levantara un contenedor escuchando en el puerto 80 y 443 listo para
 Para que funcione en los contenedores tan solo tendrás que añadir este bloque  en el docker compose.
 
 ```
+networks:
+    web:
+        external: true
+        
 env_file: .env
 labels:
       traefik.enable: 'true'
@@ -66,6 +70,10 @@ Por ejemplo en un docker compose completo.
 
 ```
 version: '3'
+
+networks:
+    web:
+        external: true
 services:
   notion-proxy:
     build:
