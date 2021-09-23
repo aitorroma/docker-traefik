@@ -1,0 +1,66 @@
+#debug = true
+
+defaultEntryPoints = ["http", "https"]
+
+#logLevel = "DEBUG"
+
+#[traefikLog]
+#  filePath = "log/traefik.log"
+
+#[accessLog]
+#  filePath = "log/access.log"
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+  compress = true
+  [entryPoints.http.forwardedHeaders]
+    trustedIPs = ["127.0.0.1/32"]
+  [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+    address = ":443"
+    compress = true
+    [entryPoints.https.tls]
+    MinVersion = "VersionTLS12"
+    CurvePreferences = [
+      "CurveP521",
+      "CurveP384",
+      "CurveP256"
+    ]
+    PreferServerCipherSuites = true
+    CipherSuites = [
+      "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305",
+      "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305",
+      "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
+      "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+      "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",
+      "TLS_RSA_WITH_AES_256_GCM_SHA384",
+      "TLS_RSA_WITH_AES_256_CBC_SHA"
+    ]
+    FrameDeny = false # here we don't want to deny frames since we have an embed
+    STSIncludeSubdomains = true
+    STSSeconds = 315360000
+    STSPreload = true
+    ContentTypeNosniff = true
+    BrowserXssFilter = true
+#  [entryPoints.traefik]
+#    address = ":8080"
+
+[retry]
+
+[docker]
+  endpoint = "unix:///var/run/docker.sock"
+  watch = true
+  exposedbydefault = false
+  network = "web"
+
+[acme]
+  storage = "acme.json"
+  entryPoint = "https"
+  OnHostRule = true
+  [acme.httpChallenge]
+    entryPoint = "http"
+
+#[api]
+
