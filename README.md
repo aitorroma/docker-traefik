@@ -21,6 +21,7 @@ clonar este repositorio
 cd /opt
 git clone https://github.com/aitorroma/docker-traefik.git traefik
 cd traefik
+chmod 600 acme.json
 ```
 
 Ajustar las variables de nombre de dominio principal y corre en el fichero `.env` .
