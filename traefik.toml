@@ -13,14 +13,14 @@ defaultEntryPoints = ["http", "https"]
 [entryPoints]
   [entryPoints.http]
   address = ":80"
-  compress = true
+  compress = false
   [entryPoints.http.forwardedHeaders]
     trustedIPs = ["127.0.0.1/32"]
   [entryPoints.http.redirect]
     entryPoint = "https"
   [entryPoints.https]
     address = ":443"
-    compress = true
+    compress = false
     [entryPoints.https.tls]
     MinVersion = "VersionTLS12"
     CurvePreferences = [
