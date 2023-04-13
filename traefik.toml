@@ -1,6 +1,7 @@
 #debug = true
 
 defaultEntryPoints = ["http", "https"]
+InsecureSkipVerify = true
 
 #logLevel = "DEBUG"
 
